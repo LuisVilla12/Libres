@@ -1,0 +1,151 @@
+<div class="text-center" style="margin-top: 20px;">
+  
+  <div class="row">
+    <div class="col-md-6" style="height: 80.3vh;
+    /*Se quede fija la imagen*/
+    background-position: center; /*imagen centrada*/
+    background-repeat: no-repeat; /*no se repita*/
+    background-size: cover; 
+    background-image: url(./img/portada6.jpg);">
+     <img src="./img/NuevoLogo.png" width="300">
+      
+    </div>
+    <div class="col-md-5">
+      <div class="container jumbotron" style="margin-left: 30px; box-shadow: 10px 10px 12px #888;">
+        <div class="form-group text-center">
+          <h2 class="text-black">BIENVENIDO {{Nombreinicio}}</h2>
+          <img src="./img/perfil.png" alt="app Learning Accounting" width="110">
+        </div>
+        <div class="form-group mx-sm-4">
+          <p>Usuario:</p>
+          <input type="text" class="form-control" id="usuario" value="{{Emailinicio}}" disabled>
+        </div>
+        <div class="form-group mx-sm-4">
+          <label class="control-label">Empresa:</label>
+          <div class="input-group">
+            <select class="selectpicker form-control" id="empresa" data-style="btn-primary"
+              ng-model="Relacion.idempresa">
+              <option value="" selected="true">--Selecciona una opción--</option>
+              <option ng-repeat="Emp in Empresas" value="{{Emp.idEmpresa}}">{{Emp.Nombre}}</option>
+            </select>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#negocio"><i
+                class="fas fa-plus"></i></button>
+          </div>
+        </div>
+        <p class="text-center">Iniciar ejercicio fiscal:</p>
+        <button class="btn btn-primary" style="width:120px;" ng-click="Iniciar(Relacion)">Iniciar</button>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
+
+
+<!--modal Empresa-->
+<div class="modal fade" id="negocio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title" id="exampleModalLabel">Registro de Empresa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Nombre de Empresa:</label>
+            <input type="text" class="form-control" id="Nombre" placeholder="Ej. Juguería Pepe"
+              ng-model="Empresa.Nombre">
+          </div>
+          <div class="form-group">
+            <label>Direcci&oacute;n:</label>
+            <input type="text" class="form-control" id="Direccion" placeholder="Ej. Calle 5 Poniente 399, Col. Centro"
+              ng-model="Empresa.Direccion">
+          </div>
+          <div class="form-group">
+            <label>Tel&eacute;fono:</label>
+            <input type="text" class="form-control" id="Telefono" placeholder="Ej. 276 112 9257"
+              ng-model="Empresa.Telefono">
+          </div>
+          <div class="form-group">
+            <label>RFC:</label>
+            <input type="text" class="form-control" id="RFC" placeholder="Ej. PEGM9007151H0" ng-model="Empresa.RFC">
+          </div>
+          <div class="form-group">
+            <label>Giro de la empresa:</label>
+            <select class="selectpicker form-control" data-style="btn-primary" ng-model="Empresa.Giro">
+              <option value="" selected>-Selecciona una opción-</option>
+              <option value="Comercial">Comercial</option>
+              <option value="Industrial">Industrial</option>
+              <option value="Educativo">Educativo</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer border-top-0 d-flex justify-content-center">
+          <button type="submit" class="btn btn-success" ng-click="btnRegistrarEmp(Empresa)">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--Modal-->
+<div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+
+      </div>
+      <div class="col-sm-13 align-self-center text-center" style="margin-bottom: 20px;">
+        <img class="img-circle" id="img_logo" src="img/sin-perfil.png" width="140">
+      </div>
+      <div class="modal-body">
+        <div class="form-title text-center">
+          <h4>Iniciar Sesión</h4>
+        </div>
+        <div class="d-flex flex-column text-center">
+          <form name="userForm" novalidate>
+            <div class="form-group">
+              <input type="text" name="Email" class="form-control"
+                placeholder="Escriba su dirección de correo electrónico..." ng-model="sesion.Email" required>
+              <!--span class="messages" ng-show="userForm.$submitted || userForm.Email.$touched">
+              <span ng-show="userForm.Email.$error.required" style="color: #0A2C8E;">El campo es obligatorio.</span>
+              <span ng-show="userForm.Email.$error.email">Formato de email incorrecto.</span>
+              </span-->
+            </div>
+            <div class="form-group">
+              <input type="password" name="Contrasena" class="form-control" placeholder="Ingrese su contraseña..."
+                ng-model="sesion.Contrasena" required>
+              <!--span class="messages" ng-show="userForm.$submitted || userForm.Contrasena.$touched">
+              <span ng-show="userForm.Contrasena.$error.required" style="color: #0A2C8E;">El campo es obligatorio.</span>
+              </span-->
+            </div>
+            <button class="btn btn-info btn-block btn-round" ng-click="btnEntrar(sesion)">Entrar</button>
+            <!--ng-disabled="userForm.$invalid"-->
+          </form>
+            
+             <div class="signup-section">¿Aún no tienes una cuenta? <a href="Registro.html"> Registrate</a>.</div>
+      </div>
+      <div class="text-center"><a href="../index.html"><i class="fas fa-home" style="color: #1AB7CD"></i>P&aacute;gina
+          Principal</a></div>
+      <div><br></div>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+
+  <script>
+    /* $(document).ready(function() {
+       $('#loginModal').modal({
+         backdrop: 'static',
+         keyboard: false,
+         show: true
+       })
+});*/
+    /* $('#formu').click(function(){
+         $('#loginModal').modal('hide');
+         $('body').removeClass('modal-open');
+       });   */
+  </script>

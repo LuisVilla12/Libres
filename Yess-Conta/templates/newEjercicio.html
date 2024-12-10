@@ -1,0 +1,142 @@
+<h1 class="text-center">Historial de registros</h1>
+<br>
+<br>
+<br>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10 ">
+    <div class="row">
+      <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2  text-center"></div>
+      <div class="input-group input-group-sm col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Registros por página: </span>
+        </div>
+        <input type="number" min="1" max="10" class="form-control" ng-model="pageSize">
+        <div class="input-group-append">
+          <span class="input-group-text badge badge-info"><i class="fas fa-boxes"></i> Ejercicios:
+            {{Ejercicios.length}}</span>
+        </div>
+      </div>
+      <div class="input-group input-group-sm col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fas fa-search"></i></span>
+        </div>
+        <input type="text" class="form-control" id="search" placeholder="Buscar" ng-model="q">
+        <div class="input-group-append">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ejercicio">Nuevo <i
+              class="fas fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <!--th>ID</!--th-->
+            <th class="text-center">Inicio Ejercicio</th>
+            <th class="text-center">Mes (Del ejercicio)</th>
+            <th class="text-center">Procedimiento-Registro</th>
+            <th class="text-center">Estatus</th>
+            <th class="text-center">Culminación Ejercicio</th>
+            <th class="text-center">Observaciones</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr dir-paginate="ejercicio in Ejercicios | orderBy:sortKey:reverse | filter:q|itemsPerPage:pageSize"
+            current-page="currentPage">
+            <!--td>{{producto.idProductos}}</td-->
+            <td class="text-center">{{ejercicio.Fecha|date: "longDate"}}</td>
+            <td class="text-center">{{ejercicio.Mes}}</td>
+            <td class="text-center">{{ejercicio.Nombre}}</td>
+            <td class="text-center">{{ejercicio.Estado}}</td>
+            <td class="text-center">{{ejercicio.Fecha_Fin|date: "longDate"}}</td>
+            <td>{{ejercicio.Observaciones}}</td>
+            <td>
+              <div class="btn-group btn-group-sm btn-group-justified">
+                <a type="button" title="Ir al ejercicio" class="btn btn-sm btn-secondary text-white" ng-click="irEjercicio(ejercicio)"><i
+                    class="fas fa-edit"></i></a>
+                <a type="button" title="Eliminar ejercicio" class="btn btn-sm btn-danger text-white" ng-click="BorrarEjercicio(ejercicio)"><i
+                    class="fas fa-trash"></i></a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <hr>
+    <div>
+      <div class="text-center">
+        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)">
+        </dir-pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--modal Registro-->
+<div class="modal fade" id="ejercicio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title" id="exampleModalLabel">Nuevo ejercicio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Empresa:</label>
+            <input class="form-control text-center"  type="text" value="{{NombreEmpresa}} " disabled
+              style="border-color: lightblue">
+          </div>
+          <div class="form-group">
+            <label>Fecha de Inicio del ejercicio:</label>
+            <input class="form-control"  type="date" ng-model="Ejercicio.Fecha">
+          </div>
+          <div class="form-group">
+            <label>Mes al que corresponde el ejercicio:</label>
+            <select class="form-control"  ng-model="Ejercicio.Mes">
+              <option value="" disabled selected>Elige una opci&oacute;n</option>
+              <option value="Enero">Enero</option>
+              <option value="Febrero">Febrero</option>
+              <option value="Marzo">Marzo</option>
+              <option value="Abril">Abril</option>
+              <option value="Mayo">Mayo</option>
+              <option value="Junio">Junio</option>
+              <option value="Julio">Julio</option>
+              <option value="Agosto">Agosto</option>
+              <option value="Septiembre">Septiembre</option>
+              <option value="Octubre">Octubre</option>
+              <option value="Noviembre">Noviembre</option>
+              <option value="Diciembre">Diciembre</option>
+            </select>
+          </div>
+          <div>
+            <label>Estatus:</label>
+            <select class="form-control"  ng-model="Ejercicio.Estado">
+              <option value="" disabled selected>Elige una opci&oacute;n</option>
+              <option value="Pendiente">Pendiente</option>
+            </select>
+          </div>
+          <div>
+            <label>Procedimiento de Registro:</label>
+            <select class="form-control"  ng-model="Ejercicio.Proc_Reg">
+              <option value="" selected="true">Elige una opci&oacute;n</option>
+              <option ng-repeat="Proc in Procedimientos" value="{{Proc.Codigo_Proc_Reg}}">{{Proc.Nombre}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Concepto:</label>
+            <input class="form-control text-center"  type="text" ng-model="Ejercicio.Observaciones">
+          </div>
+          <div class="modal-footer border-top-0 d-flex justify-content-center">
+            <button type="submit" class="btn btn-success" ng-click="btnAgregar(Ejercicio)">Agregar</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>

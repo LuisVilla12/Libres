@@ -1,0 +1,127 @@
+<br>
+<div class="container jumbotron" >
+  <div class="row" style="margin-top: -45px;">
+    <div class="col-md-3"></div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>Póliza {{Polizanum}} {{tipoPoliza}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row" style="margin-bottom: -40px;">
+    <div class="col-md-3 text-center">
+      <div class="row">
+        <div class="col-md-11 text-center" style="margin-right: 18px;">
+          <label><strong>Seleccione una Póliza:</strong></label>
+          <select class="mi-selector" ng-change="Seleccion(Poliza)" ng-model="Poliza.Num_Poliza" style="width: 200px;">
+            <option value="" selected="true">Elige una opci&oacute;n</option>
+            <option ng-repeat="Poli in Polizas" value="{{Poli.Num_Poliza}}">Póliza {{Poli.Num_Poliza}}</option>
+          </select>
+        </div>
+        <div style="margin-top: -80px;">
+          <div class="vl text-right">
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-3 text-center">
+      <label><strong>Número de Póliza:</strong></label>
+      <input class="text-center" type="text" value="{{Polizanum}}" disabled style="background-color: white;">
+    </div>
+    <div class="col-md-3 text-center">
+      <label><strong>Fecha de Factura:</strong></label>
+      <input class="text-center" type="text" value="{{FechaFactura}}" disabled style="background-color: white;">
+    </div>
+    <div class="col-md-3 text-center">
+      <label><strong>Fecha de Registro:</strong></label>
+      <input class="text-center" type="text" value="{{FechaReg}}" disabled style="background-color: white;">
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10 ">
+    <div class="row">
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3  text-center"></div>
+      <div class="input-group input-group-sm col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Registros por página: </span>
+        </div>
+        <input type="number" min="1" max="10" class="form-control" ng-model="pageSize">
+        <div class="input-group-append">
+          <span class="input-group-text badge badge-info"><i class="fas fa-boxes"></i> Registros:
+            {{tablaPoliza.length}}</span>
+        </div>
+      </div>
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3  text-center"></div>
+    </div>
+    <div class="table-responsive" >
+      <table class="table table-hover" id="tabla">
+        <thead style="color: white; background-color: #1C2D66;">
+          <tr >
+            <!--th>ID</!--th-->
+            <th>No. P&oacute;liza</th>
+            <th>Fecha de Factura</th>
+            <th>Fecha de Registro</th>
+            <th>C&oacute;digo de Cuenta</th>
+            <th>Cuenta</th>
+            <th>Concepto</th>
+            <th>Monto</th>
+            <th>Naturaleza</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr dir-paginate="polizas in tablaPoliza | orderBy:sortKey:reverse | filter:q|itemsPerPage:pageSize"
+            current-page="currentPage">
+            <!--td>{{producto.idProductos}}</td-->
+            <td class="text-right">{{polizas.Num_Poliza}}</td>
+            <td class="text-right">{{polizas.Fecha_Factura |date: "longDate"}}</td>
+            <td class="text-center">{{polizas.Fecha_Reg |date: "longDate"}}</td>
+            <td class="text-center">{{polizas.cuentas_Codigo_Cuenta}}</td>
+            <td class="text-center">{{polizas.Nombre_Cuenta}}</td>
+            <td>{{polizas.Concepto}}</td>
+            <td class="text-center">{{polizas.Monto |currency}}</td>
+            <td class="text-center">{{polizas.Codigo_Naturaleza}}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td align="center" colspan="4" style="background-color: rgba(255,255,255,0.2);"><strong>Totales acumulados:
+            </td>
+            <td align="right" style="color: white; background-color: #1C2D66;"><strong>Cargo:</strong></td>
+            <td align="right" style="background-color: #ffff;"><strong>{{TotalCargo |currency}}</strong></td>
+            <td align="right" style="color: white; background-color: #1C2D66;"><strong>Abono:</strong></td>
+            <td align="right" colspan="2" style="background-color: #ffff;"><strong>{{TotalAbono |currency}}</strong>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <hr>
+    <div>
+      <div class="text-center">
+        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)">
+        </dir-pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+<br>  
+<div class="container text-right" style="margin-right: 100px;">
+    <!-- Button to generate PDF. -->
+    <button ng-click="btnExportar()" style="background-color: rgba(0,0,0,0); border: none;" title="EXCEL"><i class="fas fa-file-excel" style="color: #189E2E; font-size: 50px;"></i></button>
+    <!--button ng-click="generarPDF(Poliza)" style="background-color: rgba(0,0,0,0); border: none;"><i class="fas fa-file-pdf" style="color: #C21330; font-size: 50px;"></i></button-->
+    <a href="/yess_conta/Yess-Conta/ServiceTrebol/controller/PDF_poliza_db_controller.php?Num_Poliza={{Poliza.Num_Poliza}}&idEjercicio={{ejer_idEjercicio}}&tipoPoliza={{tipoPoliza2}}&IdEmpresa={{IdEmpresa}}&Cargo={{TotalCargo}}&Abono={{TotalAbono}}&Email={{Emailinicio}}" title="PDF" target="_blank"><i class="fas fa-file-pdf" style="color: #C21330; font-size: 50px;"></i></a>
+</div>
+<br>
+<style>
+  .vl {
+    border-left: 1px solid green;
+    height: 140px;
+  }
+</style>

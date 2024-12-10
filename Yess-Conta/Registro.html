@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Registro</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <!--mmf-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/estilos.css">
+  <!--Tipo letra-->
+  <link href="https://fonts.googleapis.com/css2?family=Castoro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/fa-svg-with-js.css">
+  <link rel="stylesheet" type="text/css" href="js/alertifyjs/css/themes/default.css">
+  <link rel="stylesheet" type="text/css" href="js/alertifyjs/css/alertify.css">
+  <script src="js/alertifyjs/alertify.js"></script>
+  <script src="js/all.min.js"></script>
+  <script type="text/javascript" src="js/angular.js"></script>
+  <script type="text/javascript" src="js/moduloRegistro.js"></script>
+
+</head>
+
+<body ng-app="miModulo2" ng-controller="bienvenidaController">
+
+
+  <div class="container">
+    <div class="text-center">
+      <h1 style="color: rgb(0, 31, 84)">Bienvenido - Registro</h1>
+      <p>Vuelvase parte de la familia de Yess conta</p>
+    </div>
+
+
+
+
+    <div class="text-center">
+      <hr>
+      </hr>
+    </div>
+    <div class="form-group text-center">
+      <legend style="color: rgb(21, 58, 108)">Datos Personales:</legend>
+    </div>
+    <form name="regist" id="Registro" novalidate>
+      <!--btn action -->
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Nombre:</label>
+            <input class="form-control" name="Nombre" placeholder="Nombre" type="text" id="name"
+              onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"
+              ng-model="usuario.Nombre" required>
+            <span class="messages" ng-show="regist.$submitted || regist.Nombre.$touched">
+              <span ng-show="regist.Nombre.$error.required" style="color: #0A2C8E;">Debe agregar un Nombre.</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Apellido Paterno:</label>
+            <input class="form-control" name="apPaterno" placeholder="Apellido Paterno" id="apPaterno"
+              onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"
+              type="text" ng-model="usuario.APP" required>
+            <span class="messages" ng-show="regist.$submitted || regist.apPaterno.$touched">
+              <span ng-show="regist.apPaterno.$error.required" style="color: #0A2C8E;">Debe agregar su Apellido
+                Paterno.</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Apellido Materno:</label>
+            <input class="form-control" name="apMaterno" placeholder="Apellido Materno" id="apMaterno"
+              onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()"
+              type="text" ng-model="usuario.APM" required>
+            <span class="messages" ng-show="regist.$submitted || regist.apMaterno.$touched">
+              <span ng-show="regist.apMaterno.$error.required" style="color: #0A2C8E;">Debe agregar su Apellido
+                Materno.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Tel&eacute;fono (celular):</label>
+            <input class="form-control" name="Tel" placeholder="Tel&eacute;fono (celular)" type="text"
+              ng-model="usuario.Tel" required>
+            <span class="messages" ng-show="regist.$submitted || regist.Tel.$touched">
+              <span ng-show="regist.Tel.$error.required" style="color: #0A2C8E;">Debe agregar su Número de
+                Celular.</span>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Correo electr&oacute;nico:</label>
+            <input class="form-control" name="Email" placeholder="Correo electr&oacute;nico" type="email"
+              ng-model="usuario.Email" required>
+            <span class="messages" ng-show="regist.$submitted || regist.Email.$touched">
+              <span ng-show="regist.Email.$error.required" style="color: #0A2C8E;">El campo de Email es
+                obligatorio.</span>
+              <span ng-show="regist.Email.$error.email">Formato de Email incorrecto.</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Contrase&ntilde;a:</label>
+            <input class="form-control" name="pass" placeholder="Contrase&ntilde;a" id="pass" type="password"
+              maxlength="18" ng-model="usuario.Contrasena" required>
+            <span class="messages" ng-show="regist.$submitted || regist.pass.$touched">
+              <span ng-show="regist.pass.$error.required" style="color: #0A2C8E;">Debe escribir una
+                contrase&ntilde;a.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Confirma tu contrase&ntilde;a:</label>
+            <input class="form-control" name="Confircontrasena" id="confircontrasena"
+              placeholder="Confirma tu contrase&ntilde;a" type="password" maxlength="18"
+              ng-model="usuario.Confircontrasena" ng-disabled="regist.pass.$invalid" required>
+            <span class="messages" ng-show="regist.$submitted || regist.Confircontrasena.$touched">
+              <span ng-show="regist.Confircontrasena.$error.required" style="color: #0A2C8E;">Debe confirmar su
+                contrase&ntilde;a.</span>
+            </span>
+            <div
+              ng-show="(regist.pass.$dirty && regist.Confircontrasena.$dirty) && (usuario.Contrasena != usuario.Confircontrasena)">
+              <span style="color:#0A2C8E;">Las contrase&ntilde;as no coinciden...</span>
+            </div>
+            <!--span ng-show="regist.pass.$dirty && regist.Confircontrasena.$dirty && usuario.Contrasena == usuario.Confircontrasena" style="color: #3B9842;">¡Confirmación correcta!</span-->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <hr>
+        </hr>
+      </div>
+
+      <div class="form-group mx-sm-4 text-center ">
+        <button class="btn btn-primary" id="btnregistro" ng-click="btnRegistrar(usuario)"
+          ng-disabled=" regist.$invalid || usuario.Contrasena != usuario.Confircontrasena">Registrar <i
+            class="fas fa-plus"></i></button>
+      </div>
+      <!--div> Whole form invalid? {{regist.$invalid}} </div-->
+    </form>
+    <div class="from-group">
+      <span class="text-center">
+        <p>¿Ya tienes una cuenta? <a href="index.html">Iniciar Sesi&oacute;n.</a></p>
+      </span>
+    </div>
+
+  </div>
+</body>
+
+</html>
+<style type="text/css">
+  .messages {
+    color: #0A2C8E;
+  }
+
+  form.ng-submitted input.ng-invalid {
+    border-color: #0A2C8E;
+  }
+
+  form input.ng-invalid.ng-touched {
+    border-color: #0A2C8E;
+  }
+
+  /*
+  form input.ng-valid.ng-touched {
+    border-color: #78FA89;
+  }
+*/
+</style>
+
+<!--
+<script>
+  $( function() {
+    $("#empresa").change( function() {
+        if ($(this).val() === "0") {
+            $("#nombre").prop("disabled", true);
+            $("#apPaterno").prop("disabled", true);
+            $("#apMaterno").prop("disabled", true);
+            $("#correo").prop("disabled", true);
+            $("#celular").prop("disabled", true);
+            $("#contrasena").prop("disabled", true);
+            $("#confircontrasena").prop("disabled", true);
+            $("#registrar").prop("disabled", true);
+        } else {
+            $("#nombre").prop("disabled", false);
+            $("#apPaterno").prop("disabled", false);
+            $("#apMaterno").prop("disabled", false);
+            $("#correo").prop("disabled", false);
+            $("#celular").prop("disabled", false);
+            $("#contrasena").prop("disabled",false);
+            $("#confircontrasena").prop("disabled", false);
+            $("#registrar").prop("disabled", false);
+        }
+    });
+});
+-->

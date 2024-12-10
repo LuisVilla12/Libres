@@ -1,0 +1,9 @@
+body{   
+    height: 100vh;
+    background-attachment: fixed; /*Se quede fija la imagen*/
+    background-position: center; /*imagen centrada*/
+    background-repeat: no-repeat; /*no se repita*/
+    background-size: cover; /*tomar tamaño original*/
+    background-image: url("../img/fondo_12.jpg"); 
+        
+}

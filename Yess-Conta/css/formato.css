@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css?family=Arial");
+
+body{
+
+
+width: 21cm;  
+margin: 0 auto;
+}
+
+
+ 
+tr {border: 0.1px solid black; } 
+th {border: 0.1px solid black; } 
+td {border: 0.1px solid black; } 
+
+
+
+ .table {
+    border-collapse: collapse !important;
+    border: 0.1px solid black;
+    font-family: Arial, sans-serif; 
+    font-family: Arial;
+    color: #000000;
+
+  }
+  
+  
+
+  .noborde{border: none;}
+  .borde{border: 1px solid black;}
+  .centrar{ text-align: center;}
+
+
+
+.padDescri{padding: 22px 0px;}
+.negrita{color:white; font-weight: bold;}
+.style1{padding: 5px;}
+/*
+
+
+
+
+
+
+
+*/
+.padSerie {padding: 8px 35px;}
+
+.padCod   {padding: 8px 26px;}
+.padColor {padding: 8px 4px;}
+.padEdoFisico{padding: 8px 5px;}
+.padObser {padding: 8px 46px;}
+.padMarca {padding: 8px 26px;}
+.tam12{font-family: Arial, sans-serif; font-size: 10px;}
+.tam10{font-size: 12px; font-weight: normal;}
+  
+.padClasi {padding: 8px 3px;}
+
+
+.centerFirma{text-align: center;padding-top: 7px;}
+
+.SGC{
+  text-align: right; 
+  text-decoration: underline;
+  font-style: italic;
+
+    }
+
+hr {
+  height: 1px;
+  width: 70%;
+  background-color: solid #000000;
+  border: 1px solid #000000;
+}
+
+
+#borde tr{
+  border: 0px solid #ffffff;
+}
+
+
+/* Estilos del encabezado */
+
+
+.imgITSL{padding-right: 5px;}

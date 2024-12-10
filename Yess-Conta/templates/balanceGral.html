@@ -1,0 +1,322 @@
+<br>
+<div class="content">
+  <div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <h1 align="center">{{Name}}</h1>
+  <h2 align="center">Balance General del Mes de {{Mes}}</h2>
+  </div>
+  <div class="col-md-3">
+    <div style="margin-left: 102px;">
+    <br>
+    <a href="/yess_conta/Yess-Conta/ServiceTrebol/controller/PDF_balanceGral_db_controller.php?idEjercicio={{ejer_idEjercicio}}&IdEmpresa={{IdEmpresa}}&Email={{Emailinicio}}&CapitalContable={{CapitalContable}}&SaldoTotalActivos={{SaldoTotalActivos}}&TotalPasivoCapital={{TotalPasivoCapital}}" title="PDF" target="_blank"><i class="fas fa-file-pdf" style="color: #C21330; font-size: 50px;"></i></a>
+    <button title="Guardar" style="background-color: rgba(0,0,0,0); border: none;" ng-click="btnGuardar()" ng-disabled="Desabilitado"><i class="fas fa-save" style="color: #2A67D9; font-size: 55px;"></i></button>
+    </div>
+  </div>
+  </div>
+</div>
+<div class="container jumbotron" id="PDF" >
+  <div class="row">
+    <div class="col-md-6 text-center" style="background-color:#F4F9F9;">
+      <br>
+      <h2>Activos</h2>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 ">
+          <div class="table-responsive" style="margin-top: -40px; margin-bottom: -30px;">
+            <table class="table table-hover">
+              <thead style="color: white; background-color: #1C2D66;">
+                <tr>
+                  <!--th>ID</!--th-->
+                  <th class="text-center" colspan="2" style="background-color: white; color:black; font-size:20px;">Activo Circulante</th>
+                </tr>
+                <tr>
+                  <!--th>ID</!--th-->
+                  <th class="text-center">Cuenta</th>
+                  <th class="text-center">Saldo</th>
+                </tr>
+              </thead>
+              <tbody style="background-color: white;">
+                <tr ng-repeat="AC in ActivoC">
+                  <!--td>{{producto.idProductos}}</td-->
+                  <td class="text-center">{{AC.Nombre_Cuenta}}</td>
+                  <td class="text-right">{{AC.Saldo|currency}}</td>
+
+                </tr>
+              </tbody>
+              <tfoot>
+          <tr>
+            <td align="center" style="background-color: white;"><strong>Saldo Total:</strong></td>
+            <td class="text-right" style="color: white; background-color: #1C2D66;"><strong>{{SaldoActivoC|currency}}</strong></td>
+          </tr>
+            </tfoot>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 ">
+          <div class="table-responsive" style="margin-top: -40px; margin-bottom: -30px;">
+            <table class="table table-hover">
+              <thead style="color: white; background-color: #1C2D66;">
+                <tr>
+                  <!--th>ID</!--th-->
+                  <th class="text-center" colspan="2" style="background-color: white; color:black; font-size:20px;">Activo No Circulante</th>
+                </tr>
+                <tr>
+                  <!--th>ID</!--th-->
+                  <th class="text-center">Cuenta</th>
+                  <th class="text-center">Saldo</th>
+                </tr>
+              </thead>
+              <tbody style="background-color: white;">
+                <tr ng-repeat="ANC in ActivoNC">
+                  <!--td>{{producto.idProductos}}</td-->
+                  <td class="text-center">{{ANC.Nombre_Cuenta}}</td>
+                  <td class="text-right">{{ANC.Saldo|currency}}</td>
+
+                </tr>
+              </tbody>
+              <tfoot>
+          <tr>
+            <td align="center" style="background-color: white;"><strong>Saldo Total:</strong></td>
+            <td class="text-right" style="color: white; background-color: #1C2D66;"><strong>{{SaldoActivoNC|currency}}</strong></td>
+          </tr>
+            </tfoot>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 ">
+          <div class="table-responsive" style="margin-top: -40px; margin-bottom: -30px;">
+            <table class="table table-hover">
+              <thead style="color: white; background-color: #1C2D66;">
+                <tr>
+                  <!--th>ID</!--th-->
+                  <th class="text-center" colspan="2" style="background-color: white; color:black; font-size:20px;">Otros Activos</th>
+                </tr>
+                <tr>
+                  <!--th>ID</!--th-->
+                  <th class="text-center">Cuenta</th>
+                  <th class="text-center">Saldo</th>
+                </tr>
+              </thead>
+              <tbody style="background-color: white;">
+                <tr ng-repeat="OA in OActivos">
+                  <!--td>{{producto.idProductos}}</td-->
+                  <td class="text-center">{{OA.Nombre_Cuenta}}</td>
+                  <td class="text-right">{{OA.Saldo|currency}}</td>
+
+                </tr>
+              </tbody>
+              <tfoot>
+          <tr>
+            <td align="center" style="background-color: white;"><strong>Saldo Total:</strong></td>
+            <td class="text-right" style="color: white; background-color: #1C2D66;"><strong>{{SaldoOActivos|currency}}</strong></td>
+          </tr>
+            </tfoot>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+    <div class="col-md-6 text-center" style="background-color:#F4F9F9;">
+      <br>
+      <h2>Pasivos</h2>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 ">
+          <div class="table-responsive" style="margin-top: -40px; margin-bottom: -30px;">
+            <table class="table table-hover">
+              <thead style="color: white; background-color: #1C2D66;">
+                <tr>
+                  <!--th>ID</!--th-->
+                  <th class="text-center" colspan="2" style="background-color: white; color:black; font-size:20px;">Pasivo a Corto Plazo</th>
+                </tr>
+                <tr>
+                  <!--th>ID</!--th-->
+                  <th class="text-center">Cuenta</th>
+                  <th class="text-center">Saldo</th>
+                </tr>
+              </thead>
+              <tbody style="background-color: white;">
+                <tr ng-repeat="PCP in PasivoCP">
+                  <td class="text-center">{{PCP.Nombre_Cuenta}}</td>
+                  <td class="text-right">{{PCP.Saldo|currency}}</td>
+
+                </tr>
+              </tbody>
+              <tfoot>
+          <tr>
+            <td align="center" style="background-color: white;"><strong>Saldo Total:</strong></td>
+            <td class="text-right" style="color: white; background-color: #1C2D66;"><strong>{{SaldoPasivoCP|currency}}</strong></td>
+          </tr>
+            </tfoot>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 ">
+          <div class="table-responsive" style="margin-top: -40px; margin-bottom: -30px;">
+            <table class="table table-hover">
+              <thead style="color: white; background-color: #1C2D66;">
+                <tr>
+                  <!--th>ID</!--th-->
+                  <th class="text-center" colspan="2" style="background-color: white; color:black; font-size:20px;">Pasivo a Largo Plazo</th>
+                </tr>
+                <tr>
+                  <!--th>ID</!--th-->
+                  <th class="text-center">Cuenta</th>
+                  <th class="text-center">Saldo</th>
+                </tr>
+              </thead>
+              <tbody style="background-color: white;">
+                <tr ng-repeat="PLP in PasivoLP">
+                  <!--td>{{producto.idProductos}}</td-->
+                  <td class="text-center">{{PLP.Nombre_Cuenta}}</td>
+                  <td class="text-right">{{PLP.Saldo|currency}}</td>
+
+                </tr>
+              </tbody>
+              <tfoot>
+          <tr>
+            <td align="center" style="background-color: white;"><strong>Saldo Total:</strong></td>
+            <td class="text-right" style="color: white; background-color: #1C2D66;"><strong>{{SaldoPasivoLP|currency}}</strong></td>
+          </tr>
+            </tfoot>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+       <br>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 ">
+          <div class="table-responsive" style="margin-top: -40px; margin-bottom: -30px;">
+            <table class="table table-hover">
+              <thead style="color: white; background-color: #1C2D66;">
+                <tr>
+                  <!--th>ID</!--th-->
+                  <th class="text-center" colspan="2" style="background-color: white; color:black; font-size:20px;">Otros Pasivos</th>
+                </tr>
+                <tr>
+                  <!--th>ID</!--th-->
+                  <th class="text-center">Cuenta</th>
+                  <th class="text-center">Saldo</th>
+                </tr>
+              </thead>
+              <tbody style="background-color: white;">
+                <tr ng-repeat="OP in OPasivos">
+                  <!--td>{{producto.idProductos}}</td-->
+                  <td class="text-center">{{OP.Nombre_Cuenta}}</td>
+                  <td class="text-right">{{OP.Saldo|currency}}</td>
+
+                </tr>
+              </tbody>
+              <tfoot>
+          <tr>
+            <td align="center" style="background-color: white;"><strong>Saldo Total:</strong></td>
+            <td class="text-right" style="color: white; background-color: #1C2D66;"><strong>{{SaldoOPasivos|currency}}</strong></td>
+          </tr>
+            </tfoot>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+      <br>
+      <br>
+      <h2>Capital contable</h2>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 ">
+          <div class="table-responsive" style="margin-top: -40px; margin-bottom: -30px;">
+            <table class="table table-hover">
+              <thead style="color: white; background-color: #1C2D66;">
+                <tr>
+                  <!--th>ID</!--th-->
+                  <th class="text-center" colspan="2">Capital social</th>
+                </tr>
+                <tr>
+                  <!--th>ID</!--th-->
+                  <th class="text-center">Cuenta</th>
+                  <th class="text-center">Saldos</th>
+                </tr>
+              </thead>
+              <tbody style="background-color: white;">
+                <tr ng-repeat="Cap in Capital">
+                  <!--td>{{producto.idProductos}}</td-->
+                  <td class="text-center">{{Cap.Nombre_Cuenta}}</td>
+                  <td class="text-center">{{Cap.Saldo|currency}}</td>
+
+                </tr>
+                <tr>
+                  <!--td>{{producto.idProductos}}</td-->
+                  <td class="text-center">Capital Ganado ({{Nom3Utilidad}})</td>
+                  <td class="text-center">{{UtilidadNeta|currency}}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+          <tr>
+            <td align="center" style="background-color: white;"><strong>Saldo Total:</strong></td>
+            <td align="center" style="color: white; background-color: #1C2D66;"><strong>{{CapitalContable|currency}}</strong></td>
+          </tr>
+            </tfoot>
+            </table>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+       <br>
+       <br>
+    </div>
+  </div>
+  <br>
+  <div class="container">
+  <div class="row">
+    <div class="col-md-6 text-center"><h4>Saldo Total: <input class="text-right" type="text" value="{{SaldoTotalActivos|currency}}" style="background-color: white; width: 200px;" disabled></h4></div>
+    <div class="col-md-6 text-center"><h4>Saldo Total: <input class="text-right" type="text" value="{{TotalPasivoCapital|currency}}" style="background-color: white; width: 200px;" disabled></h4></div>
+  </div>
+</div>
+</div>
+<script>
+      function generarPdf() {
+        // Get the element.
+        var element = document.getElementById('PDF');
+
+        // Generate the PDF.
+        html2pdf().from(element).set({
+          margin: 1,
+          filename: 'Balance General.pdf',
+          html2canvas: { scale: 4 },
+          jsPDF: {orientation: 'Landscape', unit: 'in', format: 'letter', compressPDF: true}
+        }).save();
+      }
+    </script>

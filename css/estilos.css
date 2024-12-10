@@ -1,0 +1,43 @@
+*{
+   margin: 0;
+   padding:0;
+   box-sizing: border-box;
+}
+
+body{
+	/*font-family: 'Acme', sans-serif;*/
+	/*font-family: 'Bree Serif', serif;*/
+    /*font-family: 'IBM Plex Mono', monospace;*/
+	/*font-family: 'Noto Sans JP', sans-serif;*/
+    /*font-family: 'Oleo Script', cursive;*/
+    /*font-family: 'Aclonica', sans-serif;*/
+    /*font-family: 'Balsamiq Sans', cursive;*/
+    /*font-family: 'Hind Guntur', sans-serif;*/
+    /*font-family: 'Lora', serif;*/
+    /*font-family: 'Merienda', cursive;*/
+    /*font-family: 'Mulish', sans-serif;*/
+    font-family: 'Viga', sans-serif;*/
+}
+
+.cont_navbar{
+	background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.cont_navbar div, .cont_navbar ul{
+	background-color: transparent !important;
+}
+
+.conta_cont_section_1{
+	padding: 3%;
+}
+
+.conta_cont_sec_1_link{
+	padding: 5%;
+}
+
+.conta_cont_sec_1_link a{
+		width: 200px;
+}
+.conta_cont_section_1 hr{
+	border-top: 1px solid rgba(1, 1, 1, 0.3);
+}

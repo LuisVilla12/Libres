@@ -1,0 +1,95 @@
+<h1 align="center" >Reportes de Cuentas</h1>
+<br>
+<div class="container jumbotron">
+<br>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10 ">
+    <div class="row">
+     <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-center">
+     	<label><strong>Seleccione una Cuenta:</strong></label>
+            <select class=" mi-selector"ng-change="SeleccionCuenta(Cuenta)" ng-model="Cuenta.Nombre_Cuenta" style="width: 250px;">
+              <option value="" selected="true">Elige una opci&oacute;n</option>
+              <option ng-repeat="Cuenta in Cuentas" value="{{Cuenta.Nombre_Cuenta}}">{{Cuenta.Nombre_Cuenta}}</option>
+            </select>
+     </div>
+      <div class="input-group input-group-sm col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Registros por página: </span>
+        </div>
+        <input type="number" min="1" max="10" class="form-control" ng-model="pageSize">
+        <div class="input-group-append">
+          <span class="input-group-text badge badge-info"><i class="fas fa-boxes"></i> Registros:
+            {{tablaCuentas.length}}</span>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <h1 align="center">{{NomCuenta}}</h1>
+    <br>
+    <div class="table-responsive" id="tabla" >
+      <table class="table table-hover">
+        <thead style="color: white; background-color: #1C2D66;">
+          <tr>
+            <!--th>ID</!--th-->
+            <th>No. P&oacute;liza</th>
+            <th>Fecha de Factura</th>
+            <th>Fecha de Registro</th>
+            <th>C&oacute;digo de Cuenta</th>
+            <th>Cuenta</th>
+            <th>Concepto</th>
+            <th>Monto</th>
+            <th>Naturaleza</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr dir-paginate="cuentas in tablaCuentas | orderBy:sortKey:reverse | filter:q|itemsPerPage:pageSize"
+            current-page="currentPage">
+            <!--td>{{producto.idProductos}}</td-->
+            <td class="text-right">{{cuentas.Num_Poliza}}</td>
+            <td class="text-right">{{cuentas.Fecha_Factura |date: "longDate"}}</td>
+            <td class="text-center">{{cuentas.Fecha_Reg |date: "longDate"}}</td>
+            <td class="text-center">{{cuentas.cuentas_Codigo_Cuenta}}</td>
+            <td class="text-center">{{cuentas.Nombre_Cuenta}}</td>
+            <td>{{cuentas.Concepto}}</td>
+            <td class="text-center">{{cuentas.Monto |currency}}</td>
+            <td class="text-center">{{cuentas.Codigo_Naturaleza}}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+         <tr>
+         <td align="center" colspan="2" style="background-color: rgba(255,255,255,0.2);"><strong>Totales:</td>
+         <td align="right" style="color: white; background-color: #1C2D66;"><strong>Cargo:</strong></td>
+         <td align="right" style="background-color: #ffff;"><strong>{{TotalCargo |currency}}</strong></td>
+         <td align="right" style="color: white; background-color: #1C2D66;"><strong>Abono:</strong></td>
+         <td align="right" style="background-color: #ffff;"><strong>{{TotalAbono |currency}}</strong></td>
+         <td align="right" style="color: white; background-color: #1C2D66;"><strong>Saldo:</strong></td>
+         <td align="right" style="background-color: #ffff;"><strong>{{SaldoTotal |currency}}</strong></td>
+         </tr>
+        </tfoot>
+      </table>
+    </div>
+    <hr>
+    <div>
+      <div class="text-center">
+        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)">
+        </dir-pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container text-right" style="margin-right: 100px;">
+    <!-- Button to generate PDF. -->
+    <button ng-click="btnExportar()" style="background-color: rgba(0,0,0,0); border: none;"><i class="fas fa-file-excel" style="color: #189E2E; font-size: 50px;"></i></button>
+    <!--button onclick="generarPdf()" style="background-color: rgba(0,0,0,0); border: none;"><i class="fas fa-file-pdf" style="color: #C21330; font-size: 50px;"></i></button-->
+    <a href="/yess_conta/Yess-Conta/ServiceTrebol/controller/PDF_reporte_db_controller.php?idEjercicio={{ejer_idEjercicio}}&IdEmpresa={{IdEmpresa}}&Email={{Emailinicio}}&NombreCuenta={{Cuenta.Nombre_Cuenta}}&Cargo={{TotalCargo}}&Abono={{TotalAbono}}&Saldo={{SaldoTotal}}" title="PDF" target="_blank"><i class="fas fa-file-pdf" style="color: #C21330; font-size: 50px;"></i></a>
+</div>
+<br>
+<style>
+  .vl {
+    border-left: 1px solid green;
+    height: 140px;
+  }
+</style>

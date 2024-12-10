@@ -1,0 +1,55 @@
+ body{   
+    height: 100vh;
+    background-attachment: fixed; /*Se quede fija la imagen*/
+    background-position: center; /*imagen centrada*/
+    background-repeat: no-repeat; /*no se repita*/
+    background-size: cover; /*tomar tamaño original*/
+    background-image: url("../img/fondo_.jpg"); 
+    background: LightGray;     
+}
+.container{
+	/*background: rgb(240, 240, 240);*/
+	background-color: white;
+	padding-left: 50px; 
+	padding-right: 50px;
+}
+.titulo{
+	background: rgb(16, 35, 56);
+	color: white;
+	border: 0px solid rgb(255, 255, 255);
+	margin-top: 5px;
+	margin-bottom: 0px;
+	padding: 20px;
+	border-radius: 0px;
+}
+.subtitulo{
+	/*background-color: DodgerBlue;*/
+	
+	color: #008B8B;
+	
+	margin-bottom: 10px;
+	padding-top: 8px;
+	padding-bottom: 0px;
+	border-radius: 10px;
+}
+.pp{
+	font-size: 12px;
+	color: gray; 
+}
+ul.a {
+  list-style-type: circle;
+}
+.vl{
+	border-right: 1px solid rgba(100, 135, 142,0.2);
+	height: 800px;
+}   
+.people_image{
+    width: 144px;
+    padding: 10px;
+    text-align: center;
+ }
+ .image{
+ 	background-color: ;
+ 	width: 200px; padding: 5px;
+ 	border-radius: 10px;
+ }
